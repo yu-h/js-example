@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head> @include('./header.html', { "title": "21" })
+    <style>
+        #progress{
+            width: 700px;
+            height: 100px;
+            margin: 30px auto;
+        }
+        #bar{
+            width: 600px;
+            height: 30px;
+            background: #ccc;
+            position: relative;
+        }
+        #btn{
+            height: 40px;
+            width: 20px;
+            background: #ff0000;
+            display: inline-block;
+            position: absolute;
+            left: 0px;
+            top: -5px;
+        }
+        #bg{
+            width: 0px;
+            height: 100%;
+            background: #007fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="progress">
+        <div id="bar">
+            <div id="bg"></div>
+            <span id="btn"></span>
+        </div>
+        <div id="val">0%</div>
+    </div>
+</body>
+<script src="dist/js/lib/jquery/jquery-1.11.3.min.js"></script>
+<script>
+    window.onload = function () {
+        /*
+        *screenX screenY ——是以屏幕为基准进行测量
+        *pageX  pageY ——是以当前文档（绝对定位）为基准，不适用于ie6-8。
+        *clientX clientY ——是以当前可视区域为基准，类似于固定定位。
+        */
+        var bar = $("bar");
+        var bg = $("bg");
+        var val = $("val");
+        var btn = $("btn");
+
+        //监听鼠标按下
+        btn.onmousedown = function(event){
+            var e = event || window.event;
+            var offsetLeft = e.clientX - btn.offsetLeft;
+            //监听鼠标移动
+            document.onmousemove = function(event){
+                var e = event || window.event;
+                var x = e.clientX - offsetLeft;
+                //边界值判断
+                if (x < 0){
+                    x = 0;
+                } else if(x >= bar.offsetWidth - btn.offsetWidth){
+                    x =  bar.offsetWidth - btn.offsetWidth;
+                }
+
+                btn.style.left = x + "px";
+                bg.style.width = x + "px";
+                var value = (x /(bar.offsetWidth - btn.offsetWidth));
+                val.innerText = parseInt(value*100) + "%";
+                return false;
+            };
+            document.onmouseup = function(event){
+                var e = event || window.event;
+                document.onmousemove = null;
+            }
+        }
+
+    };
+    function $(id) {
+        return typeof id === "string" ? document.getElementById(id) : null;
+    }
+</script>
+
+</html>
+
+
+
+
+
+
+
+
+
