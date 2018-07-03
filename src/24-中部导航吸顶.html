@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head> @include('./header.html', { "title": "24" })
+    <style>
+        html,body{
+            height: 100%;
+        }
+        #head-top{
+            height: 40px;
+            background: #f0f;
+        }
+        #head-bottom{
+            height: 80px;
+            background: #007fff;
+        }
+        .nav{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+        }
+        #main{
+            width: 1000px;
+            height: 2000px;
+            background: #ccc;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="head-top"></div>
+    <div id="head-bottom"></div>
+    <div id="main"></div>
+</body>
+<script src="dist/js/lib/jquery/jquery-1.11.3.min.js"></script>
+<script>
+    window.onload = function () {
+        //
+        var nav_top_height = $("head-bottom").offsetTop;
+        //监听窗口滚动
+        window.onscroll = function () {
+            var scroll_top_height = document.documentElement.scrollTop;
+            //判断
+            if (scroll_top_height >= nav_top_height){
+                $("head-bottom").className = "nav"
+            }else {
+                $("head-bottom").className = ""
+            }
+        }
+    };
+
+    function $(id) {
+        return typeof id === "string" ? document.getElementById(id) : null;
+    }
+</script>
+
+</html>
+
+

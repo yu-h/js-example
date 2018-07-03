@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head> @include('./header.html', { "title": "25" })
+    <style>
+        html,body{
+            height: 100%;
+        }
+        #main{
+            width: 600px;
+            height: 2000px;
+            margin: 0 auto;
+            background: #d1d1d1;
+        }
+        #aside{
+            height: 300px;
+            width: 80px;
+            background: #ff00ff;
+            position: absolute;
+            top: 150px;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+    <div id="aside"></div>
+</body>
+<script src="dist/js/lib/jquery/jquery-1.11.3.min.js"></script>
+<script>
+    window.onload = function () {
+        //1、获取广告头部的高度
+        var offset_top = $("aside").offsetTop;
+
+        //2、监听窗口的滚动
+        var begin = 0, end = 0, timer = null;
+        window.onscroll = function () {
+            //先清除定时器——在事件开始的地方清除
+            clearInterval(timer);
+
+            //获取滚动的高度
+            var scroll_top = document.documentElement.scrollTop;
+            end = offset_top + scroll_top;
+
+            //缓动动画
+            timer = setInterval(function(){
+                //缓动公式
+                begin = begin + (end - begin)*0.2;
+                $("aside").style.top = begin + "px";
+
+                //当滚动到位的时候要清除定时器
+                if (Math.round(begin) === end){
+                    clearInterval(timer);
+                }
+            },20)
+        }
+
+    };
+
+    function $(id) {
+        return typeof id === "string" ? document.getElementById(id) : null;
+    }
+</script>
+
+</html>
+
+
