@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b023b553-7d3b-47af-8904-406e9232e48e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/2018JS实例.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/debug.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/22-用JSON封装Scroll.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/22-用JSON封装Scroll.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dist/css/y.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/dist/css/y.css" afterDir="false" />
-    </list>
+    <list default="true" id="b023b553-7d3b-47af-8904-406e9232e48e" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -63,11 +54,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="25-侧边横幅特效.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="25-侧边横幅特效.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/25-侧边横幅特效.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="23" column="6" lean-forward="true" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+            <state relative-caret-position="693">
+              <caret line="21" column="12" lean-forward="true" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="26-滚回顶部.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/26-滚回顶部.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="363">
+              <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -85,6 +85,7 @@
         <option value="$PROJECT_DIR$/src/23-瀑布流布局.html" />
         <option value="$PROJECT_DIR$/src/24-中部导航吸顶.html" />
         <option value="$PROJECT_DIR$/src/25-侧边横幅特效.html" />
+        <option value="$PROJECT_DIR$/src/26-滚回顶部.html" />
       </list>
     </option>
   </component>
@@ -173,12 +174,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1530619004197</updated>
-      <workItem from="1530619005967" duration="8473000" />
+      <workItem from="1530619005967" duration="9723000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8473000" />
+    <option name="totallyTimeSpent" value="9723000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1047" height="1047" extended-state="0" />
@@ -246,8 +247,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/25-侧边横幅特效.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="23" column="6" lean-forward="true" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+        <state relative-caret-position="693">
+          <caret line="21" column="12" lean-forward="true" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/26-滚回顶部.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
         </state>
       </provider>
     </entry>
