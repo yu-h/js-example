@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head> @include('./header.html', { "title": "28" })
+    <style>
+        html,body{
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+    <div id="btn"></div>
+</body>
+<script src="dist/js/lib/jquery/jquery-1.11.3.min.js"></script>
+<script>
+    window.onload = function () {
+        /**
+         *
+         */
+        var bgColor;
+        changeColor();
+        window.onresize = changeColor;
+    };
+    function changeColor(){
+        if (window.innerWidth >= 960){
+            bgColor = "green";
+        }else if (window.innerWidth >= 768){
+            bgColor = "red";
+        }else {
+            bgColor = "blue"
+        }
+        document.body.style.backgroundColor = bgColor;
+    }
+    function $(id) {
+        return typeof id === "string" ? document.getElementById(id) : null;
+    }
+</script>
+
+</html>
+
+

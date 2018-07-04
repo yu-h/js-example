@@ -243,41 +243,56 @@
         waterFull("mianBox","box");
 
         //2、动态加载图片
+        var timer1 = null;
         window.onscroll = function () {
-            if (checkWillLoadImg) {
-                //造数据
-                var dataArr = [
-                    {"src":"img/1.jpg"},
-                    {"src":"img/5.jpg"},
-                    {"src":"img/3.jpg"},
-                    {"src":"img/4.jpg"},
-                    {"src":"img/5.jpg"},
-                    {"src":"img/6.jpg"},
-                    {"src":"img/7.jpg"},
-                    {"src":"img/1.jpg"},
-                    {"src":"img/6.jpg"},
-                    {"src":"img/9.jpg"},
-                    {"src":"img/4.jpg"},
-                    {"src":"img/2.jpg"},
-                    {"src":"img/8.jpg"},
-                ];
-                //创建元素
-                for (var i = 0; i < dataArr.length; i++){
-                    var newBox = document.createElement("div");
-                    newBox.className = "box";
-                    $("mianBox").appendChild(newBox);
+            clearTimeout(timer1);
+            timer1 = setTimeout(function(){
+                if (checkWillLoadImg) {
+                    //造数据
+                    var dataArr = [
+                        {"src":"img/1.jpg"},
+                        {"src":"img/5.jpg"},
+                        {"src":"img/3.jpg"},
+                        {"src":"img/4.jpg"},
+                        {"src":"img/5.jpg"},
+                        {"src":"img/6.jpg"},
+                        {"src":"img/7.jpg"},
+                        {"src":"img/1.jpg"},
+                        {"src":"img/6.jpg"},
+                        {"src":"img/9.jpg"},
+                        {"src":"img/4.jpg"},
+                        {"src":"img/2.jpg"},
+                        {"src":"img/8.jpg"},
+                    ];
+                    //创建元素
+                    for (var i = 0; i < dataArr.length; i++){
+                        var newBox = document.createElement("div");
+                        newBox.className = "box";
+                        $("mianBox").appendChild(newBox);
 
-                    var newPic = document.createElement("div");
-                    newPic.className = "pic";
-                    newBox.appendChild(newPic);
+                        var newPic = document.createElement("div");
+                        newPic.className = "pic";
+                        newBox.appendChild(newPic);
 
-                    var newImg = document.createElement("img");
-                    newImg.src = "dist/"+dataArr[i].src;
-                    newPic.appendChild(newImg);
+                        var newImg = document.createElement("img");
+                        newImg.src = "dist/"+dataArr[i].src;
+                        newPic.appendChild(newImg);
+                    }
+                    //重新布局
+                    waterFull("mianBox","box");
                 }
-                //重新布局
+            },200)
+        }
+
+        //3、窗口大小改变
+        //节流
+        var timer = null;
+        window.onresize = function () {
+            clearTimeout(timer);
+            timer = setTimeout(function(){
                 waterFull("mianBox","box");
-            }
+            },200)
+
         }
     };
     function waterFull(parent,child){
@@ -299,9 +314,10 @@
         var minBoxIndex = 0;
         for (var i = 0; i < allbox.length; i++){
             boxHeight = allbox[i].offsetHeight;
-            if (i < cols){
+            if (i < cols){ //第一行
                 heigthArr.push(boxHeight);
-            } else {
+                allbox[i].style = "";
+            } else {  //剩余行
                 //取出最矮盒子高度
                 minBioxHeight = Math.min.apply(this,heigthArr);
                 //求出最矮盒子对应的索引
