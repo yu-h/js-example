@@ -1,5 +1,7 @@
 
-
+/*
+用ID获取标签
+ */
 function $(id){
 	return typeof id === "string" ? document.getElementById(id) : null;
 }
@@ -45,4 +47,25 @@ function scroll(){
 			"left" : document.body.scrollLeft
 		}
 	}
+}
+
+/*
+匀速动画函数
+动画的基本原理：盒子的offsetLeft + 步长
+ */
+function constant(obj,target,step){
+	//清除定时器
+	clearInterval(obj.timer);
+
+	//判断方向
+	var dir = obj.offsetLeft < target ? step : -step;
+
+	//设置定时器
+	obj.timer = setInterval(function(){
+		obj.style.left = obj.offsetLeft + dir + "px";
+		if (Math.abs(target - obj.offsetLeft) < Math.abs(dir)) {
+			clearInterval(obj.timer);
+			obj.style.left = target + "px";
+		}
+	},20)
 }

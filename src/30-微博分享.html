@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head> @include('./header.html', { "title": "30" })
+    <style>
+        html,body{
+            height: 100%;
+        }
+        #txt{
+            width: 350px;
+            background: #ccc;
+            border: 1px solid #f0f;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 18px;
+            color: #333;
+            margin: 40px;
+        }
+        #val{
+            max-width: 100px;
+            padding: 5px;
+            font-size: 16px;
+            color: #fff;
+            background: #00f;
+            position:absolute;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="txt">通过合理地使用 root、node 和 data 可以实现各种效果，其中，iView 给每个节点都设置了一个 nodeKey 字段，用来标识节点的 id。
+Render 函数分两种，一种是给当前树的每个节点都设置同样的渲染内容，此 render 通过 Tree 组件的属性 render 传递；另一种是单独给某个节点设置，在该节点的 render 字段内设置；同时设置时，会优先使用当前节点的 Render 函数。</div>
+    <div id="val">过合理地使</div>
+</body>
+<script src="dist/js/lib/jquery/jquery-1.11.3.min.js"></script>
+<script src="dist/js/myFunc.js"></script>
+<script>
+    window.onload = function () {
+        var txt = $("txt");
+        var val = $("val");
+        var selectedTxt;
+        //监听鼠标的抬起
+        txt.onmouseup = function(event){
+            var e = event || window.event;
+            //获取用户选中的内容
+            if (window.getSelection) {  //标准模式获取选中的内容
+                selectedTxt = window.getSelection().toString();
+            }else{  //IE系列
+                selectedTxt = document.selection.createRange().text;
+            }
+            if (selectedTxt !== "") {
+                //显示面板
+                val.innerText = selectedTxt;
+                val.style.display = "block";
+
+                //改变位置
+                val.style.left = e.clientX + "px";
+                val.style.top = e.clientY + "px";
+            }
+        };
+
+        //监听文档的点击
+        document.onmousedown = function(event){
+            var e = event || window.event;
+            var targetId = e.target ? e.target.id : e.srcElement.id;
+            //判断
+            if (targetId !== "val") {
+                //显示面板
+                val.style.display = "none";
+            }
+
+            //防止拖动时选中内容
+            window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+        }
+    };
+</script>
+
+</html>
+
+

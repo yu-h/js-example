@@ -230,6 +230,57 @@
         }
     }
 }
+#slider{
+    width: 650px;
+    height: 650px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    position:relative;
+    margin: 20px auto;
+    #top{
+        height: 100%;
+        width: 100%;
+        position:relative;
+        overflow:hidden;
+        ul{
+            width: 3900px;
+            position:absolute;
+            top: 0;
+            left: 0;
+        }
+        li{
+            float:left;
+            width: 650px;
+            height: 650px;
+        }
+    }
+    #ol{
+        position:absolute;
+        right: 10px;
+        bottom: 10px;
+        li{
+            width:20px;
+            height: 20px;
+            background-color: #f0f;
+            border-radius: 10px;
+            display: inline-block;
+            margin-right: 8px;
+            cursor:pointer;
+        }
+        li.on{
+            background: #00f;
+        }
+    }
+}
+
+
+
+
+
+
+
+
 
 
 @keyframes flash {

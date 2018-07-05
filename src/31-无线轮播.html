@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head> @include('./header.html', { "title": "31" })
+    <style>
+        html,body{
+            height: 100%;
+        }
+        .btn{
+            padding: 4px 14px;
+            background: #ccc;
+            margin: 20px;
+            display: inline-block;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="slider">
+        <div id="top">
+            <ul id="ul">
+                <li>
+                    <img src="dist/img/1.jpg" alt="">
+                </li>
+                <li>
+                    <img src="dist/img/2.jpg" alt="">
+                </li>
+                <li>
+                    <img src="dist/img/3.jpg" alt="">
+                </li>
+                <li>
+                    <img src="dist/img/4.jpg" alt="">
+                </li>
+                <li>
+                    <img src="dist/img/5.jpg" alt="">
+                </li>
+            </ul>
+        </div>
+        <ol id="ol"></ol>
+    </div>
+    <div class="btn">这是一个按钮</div>
+</body>
+<script src="dist/js/lib/jquery/jquery-1.11.3.min.js"></script>
+<script src="dist/js/myFunc.js"></script>
+<script>
+    //动画的基本原理：盒子的offsetLeft + 步长
+
+    window.onload = function () {
+        //获取需要的标签
+        var slider = $("slider");
+        var ul = $("ul");
+        var ol = $("ol");
+        var lis = ul.children;
+        var c_Index = 0;  //内容的标识
+        var i_Index = 0;  //索引的标识
+
+        //克隆li标签
+        ul.appendChild(lis[0].cloneNode(true));
+
+        //动态创建页码
+        for (var i = 0; i < lis.length-1; i++) {
+            var olLi = document.createElement("li");
+            ol.appendChild(olLi);
+        }
+
+        //第一个选中
+        ol.children[0].className = "on";
+
+        //鼠标进入圆点
+        var olLis = ol.children;
+        var timer = null;
+        for (var j = 0; j < olLis.length; j++) {
+            (function(j){
+                olLis[j].onmouseover = function(){
+                    for (var i = 0; i < olLis.length; i++) {
+                        olLis[i].className = "";
+                    }
+                    this.className = "on";
+
+                    //动起来
+                    constant(ul,-(650*j),50);
+                    // ul.style.left = -(650*j) + "px";
+                    c_Index = i_Index = j;
+                }
+            })(j)
+        }
+
+        //自动轮播
+        var timer = setInterval(autoPlay,3000);
+
+        //清除和设置定时器
+        slider.onmouseover = function(){
+            clearInterval(timer);
+        };
+        slider.onmouseout = function(){
+            timer = setInterval(autoPlay,3000);
+        }
+        function autoPlay(){
+            //ul滚起来
+            c_Index++;
+            if (c_Index > lis.length -1) {
+                ul.style.left = 0;
+                c_Index = 1;
+            }
+            constant(ul,-(650*c_Index),50);
+
+            //指示器滚起来
+            i_Index++;
+            if (i_Index > olLis.length-1) {
+                i_Index = 0;
+            }
+            for (var i = 0; i < olLis.length; i++) {
+                olLis[i].className = "";
+            }
+            olLis[i_Index].className = "on";
+        }
+    };
+
+    /**
+     * document.ready和window.onload的区别
+     *在Jquery里面，我们可以看到两种写法:$(function(){}) 和$(document).ready(function(){})这两个方法的效果都是一样的，都是在dom文档树加载完之后执行一个函数（注意，这里面的文档树加载完不代表全部文件加载完）。
+     *
+     * 而window.onload是在dom文档树加载完和所有文件加载完之后执行一个函数。也就是说$(document).ready要比window.onload先执行。
+     *
+     *window.onload必须等到页面内包括图片的所有元素加载完毕后才能执行。
+        $(document).ready()是DOM结构绘制完毕后就执行，不必等到加载完毕。
+     *
+     *$(window).load()我们可以这样加载多个函数
+     *
+     *$(document).ready()是规定DOM（网页文档）加载完成后网页内容加载之前执行的，也就是说在html加载完成后，图片加载之前。
+     * window.onlad()是在页面所有元素（包括图片、引用文件）加载完成后执行，也就是说页面的所有东西加载完之后在加载。
+     *
+     *
+     * $(document).ready()比window.onload()的加载速度要快
+     *
+     *
+     */
+
+</script>
+
+</html>
+
+
