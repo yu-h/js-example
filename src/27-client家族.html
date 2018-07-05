@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head> @include('./header.html', { "title": "27" })
+    <style>
+        html,body{
+            height: 100%;
+        }
+        .box{
+            width: 300px;
+            height: 300px;
+            margin: 100px;
+            padding: 10px;
+            border: 2px solid #f00;
+            background: #0f0;
+        }
+        img{
+            display: block;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box"></div>
+    <img src="dist/img/offset.png" alt="" width="800px;">
+    <img src="dist/img/scroll.png" alt="" width="800px;">
+    <img src="dist/img/client.png" alt="" width="800px;">
+</body>
+<script src="dist/js/lib/jquery/jquery-1.11.3.min.js"></script>
+<script src="dist/js/myFunc.js"></script>
+<script>
+    /**
+     *一、offset 偏移
+     *1、offsetWidth  offsetHeight是用来得到对象的大小，由自身宽高 内边距 边框构成但不包括外边距。
+     *offsetHeight和style.height的区别
+     *<1>style.height只能获取行内样式，但是offsetHeight既可以获取行内样式又可以获取内嵌样式。
+     *<2>style.height是字符串（而且带单位），offsetHeight是数值。
+     *<3>style.height可读可写，offsetHeight是只读属性。
+     *
+     *2、offsetLeft和offsetTop用来得到对象的位置，到距离自身最近的（带有定位）父元素的左侧/顶部的距离，如果所有父元素都没有定位则以body为准。
+     *
+     *
+     *
+     *二、scroll 滚动
+     *1、scrollHeight和scrollWidth  对象内部实际内容的高度/宽度，包括内边距但不包括边框
+     *2、scrollTop和scrollLeft 被卷去部分的顶部/左侧到可视区域 顶部/左侧的距离
+     *
+     *
+     *
+     * 三、client 可视区、客户端
+     * 1、clientWidth和clientHeight 包括内容和内边距，不包括边框
+     * 2、clientTop和clientLeft 几乎不用
+     *
+     *
+     *
+     *
+     * @return {[type]} [description]
+     */
+    window.onload = function(){
+        /*
+        clientTop —— 盒子上的border
+        clientLeft —— 盒子上的border
+        clientWidth  clientHeight
+        innerWidth  innerHeight
+
+        调用者的区别：
+        clientTop  clientLeft  clientWidth  clientHeight —— 调用者是元素
+        clientX  clientY —— 调用者是event对象
+
+        client、scroll、offset区别
+        clientWidth = width + padding;
+        clientHeight = height + padding;
+        offsetWidth = width + padding + border;
+        offsetHeight = height + padding + border;
+        scrollWidth = 内容宽度（不包括border）;
+        scrollHeight = 内容高度（不包括border）;
+
+        注意事项：window.innerWidth、window.innerHeight：显示的都是浏览器可视范围的宽和高，包括浏览器的头部和滚动条部分
+
+         */
+
+        document.title = client().width + "       " + client().height;
+
+        window.onscroll = function(){
+            console.log(scroll().top);
+        }
+
+    }
+
+
+    function $(id){
+        return typeof id === "string" ? document.getElementById(id) : null;
+    }
+</script>
+
+</html>
+
+

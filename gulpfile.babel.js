@@ -202,7 +202,7 @@ gulp.task('connect', function() {
             baseDir: 'assets', //本地服务器目录
             directory: true
         },
-        port: 8000
+        port: 3000
     });
     gulp.watch([htmlSrc,
         libSrc,

@@ -85,18 +85,20 @@
         var b_img = b_box.children[0];
         var list = $("list");
         var list_img = list.children;
+        var timer = null;
 
         //监听鼠标进入小盒子
         s_box.onmouseover = function(){
             mask.style.display = "block";
             b_box.style.display = "block";
+            clearInterval(timer);
             //监听鼠标的移动
              s_box.onmousemove = function(event){
                  var e = event || window.event;
                  //求出鼠标的坐标
                  var pointX = e.clientX - s_box.offsetParent.offsetLeft - mask.offsetWidth*0.5;
                  var pointY = e.clientY - s_box.offsetParent.offsetTop - mask.offsetHeight*0.5;
-
+                console.log(pointX,pointY);
                  //边界值处理
                  if (pointX <= 0){
                      pointX = 0;
