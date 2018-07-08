@@ -73,6 +73,9 @@ Render 函数分两种，一种是给当前树的每个节点都设置同样的�
             window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
         }
     };
+    function $(id){
+        return typeof id === "string" ? document.getElementById(id) : null;
+    }
 </script>
 
 </html>

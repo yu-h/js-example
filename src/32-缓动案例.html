@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head> @include('./header.html', { "title": "31" })
+    <style>
+        html,body{
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="box32" id="box32">
+        <span class="close" id="close"></span>
+        <div class="top" id="top"></div>
+        <div class="botton" id="bottom"></div>
+    </div>
+</body>
+<script src="dist/js/lib/jquery/jquery-1.11.3.min.js"></script>
+<script src="dist/js/myFunc.js"></script>
+<script>
+    //动画的基本原理：盒子的offsetLeft + 步长
+
+    window.onload = function(){
+        //获取需要的标签
+        var box = _$("box32");
+        var close = _$("close");
+        var top = _$("top");
+        var bottom = _$("bottom");
+        console.log(close);
+
+        close.onclick = function(){
+            event.preventDefault();
+            /* Act on the event */
+            buffer(bottom,{"height":0},function(){
+                buffer(box,{"width":0},function(){
+                    close.style.display = "none"
+                })
+            })
+        };
+    }
+</script>
+
+</html>
+
+

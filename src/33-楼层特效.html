@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head> @include('./header.html', { "title": "33" })
+    <style>
+        html,body{
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="box33">
+        <ul id="ul">
+            <li class="bg1">
+                <h2>第一层</h2>
+                <div class="piece1"></div>
+            </li>
+            <li class="bg2">
+                <h2>第二层</h2>
+                <div class="piece2"></div>
+            </li>
+            <li class="bg3">
+                <h2>第三层</h2>
+                <div class="piece3"></div>
+            </li>
+            <li class="bg4">
+                <h2>第四层</h2>
+                <div class="piece4"></div>
+            </li>
+            <li class="bg5">
+                <h2>第五层</h2>
+                <div class="piece5"></div>
+            </li>
+        </ul>
+        <ol id="ol">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ol>
+    </div>
+</body>
+<script src="dist/js/lib/jquery/jquery-1.11.3.min.js"></script>
+<script src="dist/js/myFunc.js"></script>
+<script>
+    //动画的基本原理：盒子的offsetLeft + 步长
+
+    window.onload = function(){
+        var ulLis = _$("ul").children;
+        var olLis = _$("ol").children;
+        var isClick = false;
+        //监听GPS的点击
+        for (var i = 0; i < olLis.length; i++) {
+            (function(index){
+                var olLi = olLis[index];
+                olLi.onclick = function(){
+                    isClick = true;
+                    for (var i = 0; i < olLis.length; i++) {
+                        olLis[i].className = ""
+                    }
+                    this.className = "active";
+
+                    //内容滚动起来
+                    console.log(index);
+                    // document.documentElement.scrollTop = ulLis[index].offsetTop;
+                    buffer(document.documentElement,{scrollTop:ulLis[index].offsetTop},function(){
+                        isClick = false;
+                    })
+                }
+            })(i)
+        };
+
+        //监听滚轮滚动
+        window.onscroll = function(){
+            if (!isClick) {
+                //获取滚动产生的高度
+                var roll = Math.ceil(document.documentElement.scrollTop);
+                //遍历
+                for (var i = 0; i < olLis.length; i++) {
+                    //判断
+                    if (roll >= ulLis[i].offsetTop - document.documentElement.clientHeight) {
+                        for (var j = 0; j < olLis.length; j++) {
+                            olLis[j].className = '';
+                        }
+                        olLis[i].className = "active";
+                    }
+                }
+            }
+        }
+    }
+</script>
+
+</html>
+
+
