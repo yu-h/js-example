@@ -340,6 +340,19 @@
         .piece5{
             height: 1200px;
         }
+        .btn{
+            padding: 0 20px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 20px;
+            color: #00ff00;
+            border: 1px solid #ff00ff;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .txt{
+            font-size: 20px;
+        }
     }
     ol{
         position:fixed;

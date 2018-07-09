@@ -1,0 +1,85 @@
+.box34{
+    width: 650px;
+    height: 690px;
+    margin: 60px auto 0;
+    overflow: hidden;
+    position: relative;
+    .top{
+        width: 650px;
+        height: 650px;
+        position: relative;
+        ul{
+            height: 650px;
+            width:1300px;
+            li{
+                width: 650px;
+                height: 650px;
+                position: absolute;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+    }
+    .bottom{
+        position: absolute;
+        bottom: 20px;
+        right: 29px;
+        z-index: 10;
+        li{
+            width: 18px;
+            height: 18px;
+            border-radius: 9px;
+            background: #00ff00;
+            cursor: pointer;
+            margin-left: 8px;
+            float: left;
+            font-size: 0;
+        }
+        .on{
+            background: #ff00ff;
+        }
+    }
+    .arrow{
+        div{
+            width: 60px;
+            height: 120px;
+            background: #c72327;
+            cursor: pointer;
+        }
+        .l-arrow{
+            position: absolute;
+            top: 280px;
+            left: 20px;
+        }
+        .r-arrow{
+            position: absolute;
+            top: 280px;
+            right: 20px;
+            z-index: 20;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
