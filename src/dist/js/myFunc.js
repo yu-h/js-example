@@ -88,7 +88,7 @@ function buffer(obj,json,fn){
 			//获取初始值
 			if ("opacity" === key) {  //透明度
 				begin = Math.round(parseFloat(getCSSAttrValue(obj,key))*100) || 100;
-				target = parseInt(json[key]*100);
+				target = parseInt(parseFloat(json[key])*100);
 			}else if ("scrollTop" === key) {
 				begin = Math.ceil(obj.scrollTop);
 				target = parseInt(json[key]);
