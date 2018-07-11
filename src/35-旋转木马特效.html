@@ -27,8 +27,8 @@
             </li>
         </ul>
         <div id="slider_ctl">
-            <span id="slider_ctl_l"></span>
-            <span id="slider_ctl_r"></span>
+            <span id="slider_ctl_l" class="slider_ctl_l"></span>
+            <span id="slider_ctl_r" class="slider_ctl_r"></span>
         </div>
     </div>
 </body>
@@ -61,16 +61,53 @@
             {
                 width:200,
                 top:20,
-                left:40,
-                opacity:0.2,
+                left:50,
+                opacity:0.4,
                 zIndex:2
+            },{
+				width:325,
+				top:30,
+				left:0,
+				opacity:0.8,
+				zIndex:3
+            },{
+				width:450,
+				top:40,
+				left:100,
+				opacity:1,
+				zIndex:4
+			},{
+				width:325,
+				top:30,
+				left:325,
+				opacity:0.8,
+				zIndex:3
+			},{
+				width:200,
+				top:20,
+				left:400,
+				opacity:0.4,
+				zIndex:2
             }
-        ]
+        ];
+        for (var i = 0; i < json.length;i++ ){
+			buffer(allLis[i],json[i]);
+        }
+
         //4、监听点击
-        for (var i = 0; i < slider_ctl.children.length; i++){
-            var item = slider_ctl.children[i];
+        for (var j = 0; j < slider_ctl.children.length; j++){
+            var item = slider_ctl.children[j];
             item.onmousedown = function(){
-                if (this.className === "slider_ctl_l"){}
+                if (this.className === "slider_ctl_l"){ //左边
+                    json.push(json.shift());
+                }else if (this.className === "slider_ctl_r"){ //右边
+                    json.unshift(json.pop());
+                }
+
+                //重新布局
+				for (var i = 0; i < json.length;i++ ){
+					buffer(allLis[i],json[i]);
+				}
             }
         }
     }

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head> @include('./header.html', { "title": "37" })
+    <style>
+        html,body{
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="main"></div>
+</body>
+<script src="dist/js/lib/jquery/jquery-1.11.3.min.js"></script>
+<script src="dist/js/myFunc.js"></script>
+<script>
+    /*
+    * 对象就是带有属性和方法的数据类型
+    *
+    * 面向过程：onload（初始化整个过程） ———— 全局变量 ———— 函数
+    * 面向对象：构造函数（初始化对象） ———— 属性（对象.属性）this.属性 ———— 方法（构造函数.原型.方法）  构造函数.prototype.方法
+    *
+    *面向对象：类和对象————类是对象的抽象，而对象是类的具体实例
+    *面向对象的特点：抽象 —— 封装 —— 继承 —— 多态
+    *
+    * 所有构造函数都是首字母大写————目的：创造完全队里的对象，互相之间不影响。
+    *
+    * */
+
+    function Rect(op){
+        this._init(op);
+    }
+
+    Rect.prototype = {
+    	_init : function(option){
+    		var option = option || {};
+
+    		//父标签的ID
+            this.parentId = option.parentId;
+
+            //位置
+            this.left = option.left || 100;
+            this.top = option.top || 100;
+
+            //自身的属性
+            this.width = option.width || 100;
+            this.height = option.height || 50;
+            this.backgroundColor = option.backgroundColor || "red";
+        },
+
+        //绘制矩形
+        render : function(){
+    		var parentNode = document.getElementById(this.parentId);
+    		var childNode = document.createElement("div");
+
+			childNode.style.position = "absolute";
+			childNode.style.left = this.left + "px";
+			childNode.style.top = this.top + "px";
+
+			childNode.style.width = this.width + "px";
+			childNode.style.height = this.height + "px";
+			childNode.style.backgroundColor = this.backgroundColor;
+
+			parentNode.appendChild(childNode)
+        }
+    };
+
+    //实例化
+    var rect = new Rect({
+        parentId : "main",
+
+        left : 100,
+        top: 200,
+
+        width : 400,
+        height : 200,
+
+		backgroundColor : "#f0f"
+    });
+	rect.render();
+
+
+
+</script>
+
+</html>
+
+

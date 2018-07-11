@@ -107,7 +107,9 @@ function buffer(obj,json,fn){
 				obj.style.filter = 'alpha(opacity:'+(begin + speed)+')'
 			}else if ("scrollTop" === key) {
 				obj.scrollTop = begin + speed;
-			}else{
+			}else if ("zIndex" === key){
+				obj.style[key] = json[key];
+			} else{
 				obj.style[key] = begin + speed + "px";
 			}
 			//判断
@@ -137,3 +139,40 @@ function getCSSAttrValue(obj,attr){
 		return window.getComputedStyle(obj, null)[attr];
 	}
 }
+
+/**
+ * 函数节流——闭包的应用
+ * @param fn
+ * @param delay
+ * @returns {Function}
+ */
+function throttle(fn,delay){
+	var timer = null;
+	return function(){
+		clearInterval(timer);
+		timer = setInterval(fn,delay);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
