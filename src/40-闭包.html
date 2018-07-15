@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head> @include('./header.html', { "title": "闭包" })
+    <style>
+        html,body{
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+<script src="dist/js/lib/jquery/jquery-1.11.3.min.js"></script>
+<script src="dist/js/myFunc.js"></script>
+<script src="dist/js/huabanwang.js"></script>
+<script>
+    /*
+    * var windowObject = window;
+    * var documentObject = document;
+    * var htmlElement = document.documentElement;
+    *
+    * 函数里的匿名函数，产生闭包
+    * function name(){
+    *      return function(){
+    *           return "yuhao"
+    *      }
+    * }
+    * name()();   调用匿名函数
+    *
+    *闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的常见方式就是在一个函数内部
+    *   创建另一个函数，通过另一个函数访问这个函数的局部变量。
+    * function box(){
+    *   var name = "hezi";
+    *   return function(){
+    *       return name;
+    *   }
+    * }
+    * box()();
+    * var b = box();
+    * b();
+    *
+    * 闭包在执行时是指向window的
+    *在全局作用域中使用块级作用域可以减少闭包占用的内存问题，因为没有指向指向匿名函数
+    *   的引用。只要函数制定完毕，就可以立即销毁其作用域链了。
+    *
+    * 私有变量——不能在函数外部访问的变量。
+    * */
+
+    function box() {
+        var arr = [];
+        for(var i = 0; i < 5; i++){
+        	arr[i] = (function(num){
+        		// return function(){
+        			return num;
+                // }
+            })(i)
+        }
+        return arr;
+	}
+	var b = box();
+	for (var i = 0; i < b.length; i++){
+		console.log(b[i]);
+    }
+	console.log(b);
+
+	function box1() {
+		var arr = [];
+		for(var i = 0; i < 10; i++){
+			arr[i] = (function(num){
+				return function(){
+				    return num;
+				}
+			})(i)
+		}
+		return arr;
+	}
+	var b1 = box1();
+	for (var i = 0; i < b1.length; i++){
+		console.log(b1[i]());
+	}
+	console.log(b1);
+
+    (function(){
+    	var a = [1,23,4,5];
+		console.log(a);
+	})()
+	//console.log(a);   //出来就不认识了
+
+	function Box() { var age = 100;
+		function run() {
+			return '运行中...';
+		}
+		this.get = function () {
+			return age + run();
+		};
+	}
+	var box = new Box();
+	alert(box.get());
+
+</script>
+
+</html>
+
+
